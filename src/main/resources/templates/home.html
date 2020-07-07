@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<main role="main">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1>Album example</h1>
+            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <p>
+                <a href="#" class="btn btn-primary my-2">Main call to action</a>
+                <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            </p>
+        </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+        <div class="container"  >
+            <div class="row" >
+                <div class="col-md-4" th:each="el : ${posts}">
+                    <div class="card mb-4 shadow-sm">
+<!--                        <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>-->
+                        <img class="bd-placeholder-img card-img-top" width="100%" height="225" src="img/logo.jpg"/>
+                        <div class="card-body" >
+                            <h3><b th:text="${el.title}"></b></h3>
+                            <p class="card-text"><b th:text="${el.anons}"></b></p>
+                            <h5><b>Author: </b> <span th:text="${el.author}"/></h5>
+                            <h6><b>Published: </b> <span th:text="${el.period}"/></h6>
+                            <div class="d-flex justify-content-between align-items-center" >
+                                <div class="btn-group">
+                                    <a th:href="'/blog/' + ${el.id}" class="btn btn-info" style="border-width: 3px; border-color: black;">View</a>
+                                    <a th:href="'/blog/' + ${el.id} + '/edit'" class="btn btn-warning" style="border-width: 3px; border-color: black;">Edit</a>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:insert="blocks/footer :: footer"></footer>
+
+</body>
+</html>
